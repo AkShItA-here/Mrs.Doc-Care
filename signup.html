@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - Women's Health Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+  background: url('https://images.unsplash.com/photo-1706737141648-2a95d33d2a63?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmVtaW5pbmUlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+    }
+    .signup-box {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+      transition: 0.3s ease-in-out;
+    }
+    h2 {
+      text-align: center;
+      color: #e91e63;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    input:focus {
+      border-color: #e91e63;
+      outline: none;
+    }
+    .password-container {
+      position: relative;
+    }
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 14px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #aaa;
+    }
+    button {
+      width: 100%;
+      padding: 0.85rem;
+      background: #e91e63;
+      border: none;
+      color: white;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #d81b60;
+    }
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .link {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+    .link a {
+      color: #e91e63;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-box">
+    <h2>Sign Up</h2>
+    <div id="error" class="error"></div>
+    <input type="email" id="email" placeholder="Email" required />
+    <div class="password-container">
+      <input type="password" id="password" placeholder="Password" required />
+      <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
+    </div>
+    <div class="password-container">
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+      <span class="toggle-password" onclick="togglePassword('confirmPassword', this)">👁️</span>
+    </div>
+    <button onclick="signup()">Sign Up</button>
+    <div class="link">
+      <a href="login.html">Already have an account? Login</a>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script>
+    // ✅ Replace this config with your actual Firebase project config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDv5EHOXYyOuz-2Y1UOSnlNtuEzL69M2fs",
+      authDomain: "women-health-tracker-ak.firebaseapp.com",
+      projectId: "women-health-tracker-ak",
+      storageBucket: "women-health-tracker-ak.appspot.com",
+      messagingSenderId: "1234567890",
+      appId: "1:1234567890:web:abcdef12345678"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function signup() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      const passwordValid = /^(?=.*[!@#$%^&*])(?=.{6,})/.test(password);
+
+      if (!emailValid) return showError("Please enter a valid email address.");
+      if (!passwordValid) return showError("Password must be at least 6 characters and include a special character (!@#$%^&*)");
+      if (password !== confirmPassword) return showError("Passwords do not match.");
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = "dashboard.html";
+        })
+        .catch((error) => {
+          showError(error.message);
+        });
+    }
+
+    function showError(message) {
+      document.getElementById("error").textContent = message;
+    }
+
+    function togglePassword(id, element) {
+      const field = document.getElementById(id);
+      if (field.type === "password") {
+        field.type = "text";
+        element.textContent = "🙈";
+      } else {
+        field.type = "password";
+        element.textContent = "👁️";
+      }
+    }
+  </script>
+</body>
+</html>

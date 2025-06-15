@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome | Women's Health Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #fdf0f3, #e3f2fd);
+    }
+
+    header {
+      background: linear-gradient(to right, #f48fb1, #ce93d8);
+
+      color: white;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.6rem;
+      margin: 0;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ffe3ef;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4rem 2rem;
+      background: url('https://img.freepik.com/premium-photo/abstract-womens-day-banner-with-empty-copy-space_1053-26157.jpg?semt=ais_hybrid&w=740') no-repeat center/cover;
+
+      color: rgba(66, 8, 60, 0.927);
+      height: 80vh;
+    }
+    .hero-text {
+      max-width: 600px;
+      backdrop-filter: blur(3px);
+      background-color: rgba(255, 255, 255, 0);
+      padding: 2rem;
+      border-radius: 20px;
+    }
+    .hero h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-img {
+      flex: 1 1 700px;
+      max-width: 700px;
+      padding: 2.8rem;
+    }
+    .hero-img img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .hero button {
+      padding: 0.8rem 2rem;
+      background-color: purple;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .hero button:hover {
+      transform: scale(1.05);
+      background-color:rgb(202, 36, 161);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      padding: 3rem 2rem;
+      background: linear-gradient(to top right, #fce4ec, #e8eaf6);
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    .feature-card i {
+      font-size: 2rem;
+      color: #d81b60;
+      margin-bottom: 0.8rem;
+    }
+    .feature-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+        .feature-card button {
+  margin-top: 1rem;
+  padding: 0.6rem 1.5rem;
+  background-color: #d81b60;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.feature-card button:hover {
+  background-color: #ad1457;
+  transform: scale(1.05);
+}
+
+    .cta {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(to right, #f3e5f5, #fce4ec);
+    }
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .cta button {
+      padding: 0.8rem 2rem;
+      background-color: #d81b60;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1rem;
+      color: #6a1b9a;
+      background: linear-gradient(135deg, #f3e5f5, #fce4ec);
+      font-family: 'Great Vibes', cursive;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mrs.Doc Care</h1>
+    <nav>
+      <a href="d2.html">Home</a>
+      <a href="#features">Features</a>
+      <a href="community.html">Community</a>
+      <a href="settings.html">Settings</a>
+      <a href="about.html">About</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Your Journey to Better Health Starts Here</h2>
+      <p>Track your cycle, care for PCOS, get mental health support, and connect with a strong women’s community.</p>
+      <button onclick="window.location.href='signup.html'" >Get Started</button>
+    </div>
+    <!--<div class="hero-img">
+      <img src="https://www.asianinfertility.com/wp-content/uploads/2024/02/What-is-PCOS.jpg"
+      " alt="Women's Health Illustration">
+    </div> -->
+  </section>
+
+  <section class="features" id="features">
+  <div class="feature-card">
+    <i class="fas fa-calendar-alt"></i>
+    <h3>Cycle Calendar</h3>
+    <p>Track your periods and ovulation with ease and clarity.</p>
+    <button onclick="window.location.href='cycle.html'">Explore</button>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-heartbeat"></i>
+    <h3>PCOS Care</h3>
+    <p>Understand, manage, and improve your PCOS journey.</p>
+    <button onclick="window.location.href='pcos.html'">Explore</button>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-baby"></i>
+    <h3>Pregnancy</h3>
+    <p>Monitor your pregnancy and prenatal wellness.</p>
+    <button onclick="window.location.href='preg.html'">Explore</button>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-brain"></i>
+    <h3>Mental Wellness</h3>
+    <p>Access mood tracking and stress-relief tools.</p>
+    <button onclick="window.location.href='mental.html'">Explore</button>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-apple-alt"></i>
+    <h3>Nutrition</h3>
+    <p>Personalized nutrition tips and meal plans.</p>
+    <button onclick="window.location.href='nurition.html'">Explore</button>
+  </div>
+</section>
+
+
+  <section class="cta">
+    <h2>Ready to take control of your health?</h2>
+    <button onclick="window.location.href='signup.html'">Join Now</button>
+  </section>
+
+  <footer>
+    "A healthy outside starts from the inside."
+  </footer>
+</body>
+</html>

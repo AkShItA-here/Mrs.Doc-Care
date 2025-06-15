@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mental Wellness Program</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+     background: url('https://img.freepik.com/free-vector/flat-world-mental-health-day-background_23-2149671209.jpg?semt=ais_hybrid&w=740') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    header {
+      background: #ffe0ed;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: slideDown 1s ease-in-out;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    header h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #d94f85;
+    }
+
+    header nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #1a1a1a;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    header nav a:hover {
+      color: #d94f85;
+    }
+  .cta-btn {
+  background: #d94f85;
+  color: white;
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none; /* IMPORTANT for <a> tag */
+  display: inline-block; /* Makes <a> look like a button */
+  z-index: 2; /* So it shows above hero background */
+  position: relative; /* Ensures z-index applies */
+  }
+
+
+    .cta-btn:hover {
+      background: #c03e70;
+    }
+
+    .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem;
+      color: white;
+      overflow: hidden;
+      min-height: 85vh;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero-bg.active {
+      opacity: 1;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .hero h1, .hero p, .hero button, .hero blockquote {
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+    }
+
+    section.section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeInUp 1s ease both;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #d94f85;
+    }
+
+    .section p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer {
+      background: #ffe0ed;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .mood-tracker,
+    #quiz form,
+    textarea {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .mood-tracker label {
+      font-weight: 600;
+      margin-right: 1rem;
+    }
+
+    .mood-tracker select,
+    textarea {
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    .feature-images img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.06);
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    #quiz p {
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-home-btn {
+  background-color: #8a2be2; /* violet */
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 400px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.back-home-btn:hover {
+  background-color: #6a1bbf; /* darker violet on hover */
+}
+
+
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Shimmer effect */
+.shimmer {
+  background: linear-gradient(90deg, #ffffff33 25%, #ffffff88 50%, #ffffff33 75%);
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: visible;
+  animation: shimmer 2s infinite linear, fadeInUp 1s ease forwards;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- <header>
+    <h2>Mental Wellness</h2>
+    <nav>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#mood-tracker">Mood</a>
+
+      <a href="#yoga-benefits">Yoga</a>
+      <a href="#quiz">Quiz</a>
+    </nav> 
+  </header> -->
+
+  <section class="hero">
+    <div class="hero-bg active" style="background-image: url('https://static.theceomagazine.net/wp-content/uploads/2024/10/10090446/How-leaders-influence-mental-health-in-the-workplace_SHARING.jpg');"></div>
+    <div class="hero-bg" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG6gwoQesfBcEd-yywE5KQsr44Vedhq8965g&s');"></div>
+    <div class="hero-bg" style="background-image: url('https://insightsgroup.net/wp-content/uploads/2020/10/Image-for-Our-Mental-Wellness-Series.jpg');"></div>
+   <h1 class="shimmer">Your mental health is a priority. Your happiness is essential. Your self-care is a necessity.</h1>
+    <p>You're not alone — healing starts with one step.Let your journey to peace and clarity begin today.</p>
+    <a href="#quiz" class="cta-btn">Take Mental Health Quiz</a>
+    <!-- <a href="login.html">Join Our Community</a> -->
+  </section>
+
+  <section class="section" id="how-it-works">
+    <h2 class="reveal">How It Works</h2>
+    <p>Personalized weekly lessons, therapist support, and progress tracking all in one simple app.</p>
+   <div class="feature-images">
+      <img src="https://www.onlinecounselling4u.com/blog/wp-content/uploads/2021/12/7-reasons-why-you-should-choose-online-counselling.jpg" alt="Mindfulness practices">
+    </div>
+  </section>
+
+
+  <section class="section" id="features">
+    <h2 class="reveal">Program Features</h2>
+    <ul>
+      <li>✓ Licensed therapist guidance</li>https://www.ocduk.org/wp-content/uploads/2020/07/online-therapist-ocduk.jpg
+      <li>✓ Daily mindfulness practices</li>
+      <li>✓ Sleep and stress tracking</li>
+      <li>✓ Secure in-app messaging</li>
+    </ul>
+    <div class="feature-images">
+      <img src="https://res.cloudinary.com/jerrick/image/upload/v1683007736/6450a8f819d3a5001ded5b2e.png" alt="Mindfulness practices">
+    </div>
+  </section>
+
+  <section class="section" id="mood-tracker">
+    <h2 class="reveal">Daily Mood Tracker</h2>
+    <div class="mood-tracker">
+      <label for="mood">How are you feeling today?</label>
+      <select id="mood">
+        <option value="">Select...</option>
+        <option value="happy">😊 Happy</option>
+        <option value="calm">😌 Calm</option>
+        <option value="anxious">😟 Anxious</option>
+        <option value="sad">😢 Sad</option>
+        <option value="angry">😠 Angry</option>
+        <option value="tired">😴 Tired</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="section" id="yoga-benefits">
+    <h2 class="reveal">Benefits of Yoga for Mental Health</h2>
+    <ul>
+      <li>🧘‍♀ Reduces stress and anxiety</li>
+      <li>🧘‍♀ Improves focus and clarity</li>
+      <li>🧘‍♀ Promotes emotional balance</li>
+      <li>🧘‍♀ Boosts self-awareness and self-esteem</li>
+      <li>🧘‍♀ Enhances quality of sleep</li>
+    </ul>
+    <div class="feature-images">
+      <img src="https://brand.assets.adidas.com/capi/enIN/Images/bodyimage2-d_209-873072.jpg" alt="Yoga for wellness">
+    </div>
+  </section>
+
+  <section class="section" id="quiz">
+    <h2 class="reveal">Mental Health Self-Check Quiz</h2>
+    <form id="mentalQuiz">
+      <p>1. How often do you feel overwhelmed?</p>
+      <input type="radio" name="q1" value="3"> Often<br>
+      <input type="radio" name="q1" value="2"> Sometimes<br>
+      <input type="radio" name="q1" value="1"> Rarely<br><br>
+
+      <p>2. How well are you sleeping?</p>
+      <input type="radio" name="q2" value="1"> Very well<br>
+      <input type="radio" name="q2" value="2"> Somewhat<br>
+      <input type="radio" name="q2" value="3"> Poorly<br><br>
+
+      <p>3. Do you find it hard to focus?</p>
+      <input type="radio" name="q3" value="3"> Yes<br>
+      <input type="radio" name="q3" value="2"> Occasionally<br>
+      <input type="radio" name="q3" value="1"> No<br><br>
+
+      <button class="cta-btn" type="button" onclick="checkQuiz()">Submit</button>
+      <p id="quizResult" style="margin-top: 1rem; font-weight: bold;"></p>
+    </form>
+  </section>
+
+  <section class="section">
+    <h3>Listen to Calm Your Mind</h3>
+    <audio controls>
+      <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </section>
+
+  <section class="section" id="testimonials">
+    <h2 class="reveal">What Users Are Saying</h2>
+    <p>"This program helped me reconnect with myself and finally manage my anxiety. Truly life-changing." – Sarah J.</p>
+    <div class="feature-images">
+      <img src="https://thumbs.dreamstime.com/b/mental-health-wellness-concept-illustration-woman-practicing-yoga-meditation-next-to-human-head-flowers-growing-362124606.jpg" alt="User testimonial">
+    </div>
+  </section>
+
+  <section class="section">
+    <h3>Write Your Thoughts</h3>
+    <textarea rows="6" placeholder="Write anything on your mind..."></textarea>
+  </section>
+
+  <div style="text-align: center; margin-top: 2rem;">
+  <a href="d2.html" class="back-home-btn">⬅ Back to Home</a>
+</div>
+<br>
+  <footer>
+    <p>&copy; 2025 Women's Health Info | Built for awareness and empowerment</p>
+  </footer>
+
+  <script>
+    const backgrounds = document.querySelectorAll('.hero-bg');
+    let current = 0;
+
+    setInterval(() => {
+      backgrounds[current].classList.remove('active');
+      current = (current + 1) % backgrounds.length;
+      backgrounds[current].classList.add('active');
+    }, 5000);
+
+    function checkQuiz() {
+      let score = 0;
+      for (let i = 1; i <= 3; i++) {
+        const answer = document.querySelector(input[name="q${i}"],checked);
+        if (answer) score += parseInt(answer.value);
+      }
+
+      const resultText = document.getElementById("quizResult");
+      if (score >= 7) {
+        resultText.textContent = "⚠ High stress level. Consider seeking help from a professional.";
+      } else if (score >= 5) {
+        resultText.textContent = "😐 Moderate stress. Try mindfulness or light exercise like yoga.";
+      } else {
+        resultText.textContent = "😊 You seem to be doing well. Keep up the good self-care!";
+      }
+    }
+  </script>
+  <script>
+  function revealOnScroll() {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => {
+      const windowHeight = window.innerHeight;
+      const elementTop = el.getBoundingClientRect().top;
+      const revealPoint = 100; // Trigger point
+
+      if (elementTop < windowHeight - revealPoint) {
+        el.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll); // In case some are in view on load
+</script>
+
+
+</body>
+</html>

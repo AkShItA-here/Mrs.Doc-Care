@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Women's Health Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    
+  body {
+  font-family: 'Poppins', sans-serif;
+  background: url('https://images.unsplash.com/photo-1706737141648-2a95d33d2a63?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmVtaW5pbmUlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+
+  .login-box {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 550px;  /* Increased width */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .login-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+  }
+
+  h2 {
+    text-align: center;
+    color: #e91e63;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+    font-size: 2.5rem; /* Increased font size */
+  }
+
+  .input-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 0.9rem 2.5rem 0.9rem 2.8rem; /* top/right/bottom/left */
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  background-color: #fdfdfd;
+  box-sizing: border-box;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-container input:focus {
+  border-color: #e91e63;
+  box-shadow: 0 0 5px rgba(233, 30, 99, 0.3);
+  outline: none;
+}
+
+.icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #e91e63;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #e91e63;
+}
+
+
+  button {
+    width: 100%;
+    padding: 1.1rem;
+    background: #e91e63;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem; /* Increased button text size */
+    border-radius: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background: #d81b60;
+  }
+
+  .error {
+    color: red;
+    font-size: 1.05rem; /* Slightly larger */
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .link {
+    text-align: center;
+    margin-top: 1.2rem;
+    font-size: 1.1rem; /* Larger link text */
+  }
+
+  .link a {
+    color: #e91e63;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .link a:hover {
+    text-decoration: underline;
+  }
+
+
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login</h2>
+    <div id="error" class="error"></div>
+
+    <div class="input-container">
+      <span class="icon">📧</span>
+      <input type="email" id="email" placeholder="Email" required />
+    </div>
+
+    <div class="input-container password-container">
+      <span class="icon">🔒</span>
+      <input type="password" id="password" placeholder="Password" required />
+      <span class="toggle-password" onclick="togglePassword()">👁️</span>
+    </div>
+
+    <button onclick="login()">Login</button>
+
+    <div class="link">
+      <a href="#" onclick="resetPassword()">Forgot Password?</a><br>
+      <a href="signup.html">Don't have an account? Sign Up</a>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "your-project-id.firebaseapp.com",
+      projectId: "your-project-id",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function login() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      const passwordValid = /^(?=.*[!@#$%^&*])(?=.{6,})/.test(password);
+
+      if (!emailValid) {
+        showError("Please enter a valid email address.");
+        return;
+      }
+
+      if (!passwordValid) {
+        showError("Password must be at least 6 characters and include a special character (!@#$%^&*)");
+        return;
+      }
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = "dashboard.html";
+        })
+        .catch((error) => {
+          showError(error.message);
+        });
+    }
+
+    function resetPassword() {
+      const email = document.getElementById("email").value;
+      if (!email) return showError("Please enter your email to reset password");
+
+      auth.sendPasswordResetEmail(email)
+        .then(() => {
+          alert("Password reset email sent");
+        })
+        .catch(error => showError(error.message));
+    }
+
+    function showError(message) {
+      document.getElementById("error").textContent = message;
+    }
+
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      const toggle = document.querySelector(".toggle-password");
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggle.textContent = "🙈";
+      } else {
+        passwordField.type = "password";
+        toggle.textContent = "👁️";
+      }
+    }
+  </script>
+</body>
+</html>

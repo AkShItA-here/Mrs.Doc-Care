@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Women's Health Nutrition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(to right, #ffe6f0, #ffffff);
+      color: #333;
+    }
+    header {
+      position: relative;
+      height: 100vh;
+      background: url('https://img.freepik.com/premium-photo/concept-healthy-food-health-female-reproductive-system-diet-health-uterus-reproductive-system-as-whole-proper-nutrition-women-s-health_152625-8258.jpg') center/cover no-repeat;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+      color: white;
+      overflow: hidden;
+      color: white;
+    }
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+    header a {
+      margin-top: 2rem;
+      padding: 0.8rem 2rem;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    header a:hover {
+      background-color: #ff1493;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #941856;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      flex: 1 1 300px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .testimonial {
+      font-style: italic;
+      background: #ffe0ef;
+      padding: 1rem;
+      border-left: 5px solid #ec407a;
+      margin-bottom: 1rem;
+    }
+    .testimonial-form {
+      margin-top: 2rem;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .testimonial-form h3 {
+      margin-bottom: 10px;
+      color: #c2185b;
+    }
+    .testimonial-form input,
+    .testimonial-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .testimonial-form button {
+      background: #d81b60;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .testimonial-form button:hover {
+      background: #ad1457;
+    }
+    .success-message {
+      color: green;
+      margin-top: 10px;
+      display: none;
+    }
+    footer {
+      background: #880e4f;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+    }
+  header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    header * {
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated-heading {
+  opacity: 0;
+  animation: fadeSlideIn 1.2s ease-out forwards;
+}
+
+.animated-heading:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.animated-heading:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.animated-heading {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    to right,
+    #0ebef3 20%,
+    #ff8da7 40%,
+    #f9e503 60%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 2.5s linear infinite, fadeSlideIn 1.2s ease-out forwards;
+  opacity: 0; /* for slide-in */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% center;
+  }
+  100% {
+    background-position: 100% center;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="animated-heading">Let Food Be Your Medicine</h1>
+<p class="animated-heading">Fuel your body, nourish your soul — because every woman deserves vibrant health.</p>
+
+    <a href="login.html">Join Our Community</a>
+    
+  </header>
+
+  <section>
+    <h2 class="section-title animated-heading" style="animation-delay: 0.1s;">About Me</h2>
+    <p style="text-align:center; max-width: 700px; margin:auto; font-size:1.1rem;">
+      I'm a certified women's health nutritionist focused on hormonal balance, energy, and emotional well-being for women of all ages.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="section-title animated-heading" style="animation-delay: 0.3s;">What I Offer</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Hormone-Safe Meal Plans</h3>
+        <p>Curated plans that align with your menstrual, pregnancy, or menopause needs.</p>
+      </div>
+      <div class="card">
+        <h3>Mindful Weight Coaching</h3>
+        <p>Compassionate strategies focused on body confidence and lasting wellness.</p>
+      </div>
+      <div class="card">
+        <h3>Wellness Supplements</h3>
+        <p>Guidance on natural supplements that support mood, energy, and immunity.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title animated-heading" style="animation-delay: 0.5s;">Voices of Women</h2>
+    <div class="testimonial">“I feel more connected to my body than ever before. This guidance changed my life!” – Riya S.</div>
+    <div class="testimonial">“Her gentle and powerful approach to women’s wellness is what we all need.” – Neha K.</div>
+
+    <div class="testimonial-form">
+      <h3>Share Your Story</h3>
+      <form id="reviewForm">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <textarea id="review" rows="4" placeholder="Your Review" required></textarea>
+        <button type="submit">Submit Review</button>
+        <p class="success-message" id="successMessage">✅ Review submitted successfully!</p>
+      </form>
+    </div>
+  </section>
+<section>
+  <h2 class="section-title animated-heading" style="animation-delay: 0.7s;">Smart Diet Plan</h2>
+  <div style="max-width: 700px; margin: auto;">
+    <label for="dailyCalories">Enter your daily calorie goal:</label>
+    <input type="number" id="dailyCalories" placeholder="e.g. 1800" style="width: 100%; padding: 10px; margin: 10px 0;" />
+    <button onclick="generatePlan()" style="padding: 10px 20px; background-color: #c2185b; color: white; border: none; border-radius: 6px; cursor: pointer;">Get My Diet Plan</button>
+
+    <div id="planOutput" style="margin-top: 20px; background: #ffe0ef; padding: 20px; border-radius: 12px;"></div>
+  </div>
+</section>
+<div style="text-align: center; margin-bottom: 20px;">
+  <button onclick="location.href='d2.html'" style="padding: 10px 25px; background-color: #c2185b; color: white; border: none; border-radius: 25px; font-size: 1rem; cursor: pointer;">⬅ Back to Home</button>
+  </div>
+
+  <section id="contact">
+    
+    <h3 class="section-title">Connect with Us</h3>
+    <p style="text-align:center;">📧 Email: hello@womenshealthpro.com | 📞 Phone: +91 9876543210</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Women's Health Info | Built for awareness and empowerment</p>
+  </footer>
+  <script>
+    const form = document.getElementById('reviewForm');
+    const nameInput = document.getElementById('name');
+    const reviewInput = document.getElementById('review');
+    const successMessage = document.getElementById('successMessage');
+    function generatePlan() {
+  const calorieInput = document.getElementById("dailyCalories").value;
+  const planDiv = document.getElementById("planOutput");
+
+  if (!calorieInput || calorieInput <= 0) {
+    planDiv.innerHTML = "<p style='color:red;'>⚠ Please enter a valid calorie number.</p>";
+    return;
+  }
+
+  const total = parseInt(calorieInput);
+  const breakfast = Math.round(total * 0.25);
+  const lunch = Math.round(total * 0.30);
+  const snack = Math.round(total * 0.15);
+  const dinner = total - (breakfast + lunch + snack);
+
+  planDiv.innerHTML = `
+    <h3>Your Personalized Diet Plan for ${total} kcal</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>🍳 Breakfast (${breakfast} kcal):</strong> Oats with milk & banana, boiled egg, almonds</li>
+      <li><strong>🥗 Lunch (${lunch} kcal):</strong> Brown rice, dal, mixed veg curry, salad, curd</li>
+      <li><strong>🍎 Snack (${snack} kcal):</strong> Fruit bowl with nuts or sprout chaat</li>
+      <li><strong>🍛 Dinner (${dinner} kcal):</strong> Quinoa khichdi or roti with paneer sabzi, soup</li>
+    </ul>
+    <p style="margin-top: 10px;">Tip: Stay hydrated and avoid fried or processed food 💧</p>
+  `;
+}
+
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      successMessage.style.display = 'block';
+      nameInput.value = '';
+      reviewInput.value = '';
+    });
+  </script>
+</body>
+</html>

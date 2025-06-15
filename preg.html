@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pregnancy Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('https://cdn.vectorstock.com/i/1000v/04/23/pregnant-woman-motherhood-concept-vector-28020423.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    main {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+    }
+
+    .hero-header {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: background-image 1s ease-in-out;
+    }
+    .hero-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    .hero-text {
+      position: relative;
+      color: #fff;
+      text-align: center;
+      z-index: 1;
+      padding: 0 20px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #555;
+    }
+
+    input[type="date"],
+    input[type="number"],
+    input[type="text"] {
+      padding: 10px;
+      margin-top: 6px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    button {
+      background-color: #d81b60;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ad1457;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #c2185b;
+    }
+
+    .section {
+      margin-top: 10px;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+    .section-heading {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.section-heading.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+.section-heading {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.section-heading.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+  </style>
+</head>
+<body>
+  <div class="hero-header" id="heroHeader">
+    <div class="hero-text">
+      <h1>Every heartbeat inside you is a whisper of love and life.  :)
+      </h1>
+      <p>Track your journey from bump to baby — week by week 💕</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="card">
+      <label for="lmp">Last Menstrual Period (LMP):</label>
+      <input type="date" id="lmp" />
+      <div class="section" id="results"></div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-heading">This Week's Guide</h2>
+      <p id="weeklyGuide">Enter your LMP to view weekly updates.</p>
+      <img src="https://i.pinimg.com/736x/9e/32/8f/9e328f66cf97494a2554b18e80fba704.jpg" alt="Weekly Update"/>
+    </div>
+    <div class="card">
+  <h2 class="section-heading">Select Your Trimester</h2>
+  <label for="trimester">Trimester:</label>
+  <select id="trimester" onchange="showTrimesterInfo()">
+    <option value="">-- Choose --</option>
+    <option value="1">1st Trimester (Weeks 1-12)</option>
+    <option value="2">2nd Trimester (Weeks 13-27)</option>
+    <option value="3">3rd Trimester (Weeks 28-40)</option>
+  </select>
+  <div class="section" id="trimesterInfo"></div>
+</div>
+
+
+    <div class="card">
+      <h2 class="section-heading">Health Tracker</h2>
+      <label for="weight">Current Weight (kg):</label>
+      <input type="number" id="weight" placeholder="e.g. 65" />
+      <label for="symptoms">Today's Symptoms:</label>
+      <input type="text" id="symptoms" placeholder="e.g. nausea, fatigue" />
+      <button onclick="logHealthData()">Log</button>
+      <div class="section" id="healthLog"></div>
+      <img src="https://img.freepik.com/free-photo/still-life-positive-pregnancy-test_23-2150621808.jpg" alt="Health Tracker"/>
+    </div>
+     
+        <div class="card">
+  <h2 class="section-heading">Baby Size Entry</h2>
+  <label for="babyLength">Baby's Length (cm):</label>
+  <input type="number" id="babyLength" placeholder="e.g., 25" />
+  <button onclick="displayBabyLength()">Submit</button>
+  <p id="babyLengthOutput"></p>
+</div>
+
+
+    <div class="card">
+      <h2 class="section-heading">Kick Counter</h2>
+      <button onclick="recordKick()">Record Kick</button>
+      <button onclick="resetKicks()" style="margin-left:10px;">Reset</button>
+      <p id="kickCount">Kicks recorded today: 0</p>
+      <img src="https://media.istockphoto.com/id/592023524/vector/woman-feels-contractions-top-view.jpg?s=612x612&w=0&k=20&c=TVoXlslZdcQdsQZtPm5ETUCOrnGVcpL-ZgnzscYG8Fc=" alt="Kick Counter"/>
+    </div>
+        <div class="card">
+  <h2 class="section-heading">Relaxation Music</h2>
+  <audio controls>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+  <button onclick="location.href='d2.html'" style="padding: 10px 25px; background-color: #c2185b; color: white; border: none; border-radius: 25px; font-size: 1rem; cursor: pointer;">⬅ Back to Home</button>
+  </div>
+
+      <footer>
+    <p>&copy; 2025 Women's Health Info | Built for awareness and empowerment</p>
+  </footer>
+  </main>
+
+  <script>
+    const lmpInput = document.getElementById("lmp");
+    const resultsDiv = document.getElementById("results");
+    const weeklyGuide = document.getElementById("weeklyGuide");
+    const healthLog = document.getElementById("healthLog");
+    const kickCountDisplay = document.getElementById("kickCount");
+
+    let kickCount = 0;
+
+    lmpInput.addEventListener("change", () => {
+      const lmpDate = new Date(lmpInput.value);
+      const today = new Date();
+      const dueDate = new Date(lmpDate);
+      dueDate.setDate(dueDate.getDate() + 280);
+
+      const weeksPregnant = Math.floor((today - lmpDate) / (7 * 24 * 60 * 60 * 1000));
+
+      resultsDiv.innerHTML = `
+        <p><span class="highlight">Estimated Due Date:</span> ${dueDate.toDateString()}</p>
+        <p><span class="highlight">Weeks Pregnant:</span> ${weeksPregnant} weeks</p>
+      `;
+
+      weeklyGuide.textContent = `You are in week ${weeksPregnant + 1}. Your baby is growing beautifully! 💖 Stay hydrated, eat well, and keep calm.`;
+
+    });
+
+    function showTrimesterInfo() {
+  const trimester = document.getElementById("trimester").value;
+  const infoDiv = document.getElementById("trimesterInfo");
+
+  let info = "";
+  if (trimester === "1") {
+    info = `
+      <p><strong>1st Trimester Tips (Weeks 1–12):</strong></p>
+      <ul>
+        <li>Take folic acid daily</li>
+        <li>Stay hydrated and rest well</li>
+        <li>Watch for nausea, fatigue, mood swings</li>
+        <li>Avoid caffeine, alcohol, and smoking</li>
+      </ul>`;
+  } else if (trimester === "2") {
+    info = `
+      <p><strong>2nd Trimester Tips (Weeks 13–27):</strong></p>
+      <ul>
+        <li>Start light prenatal exercises</li>
+        <li>Expect baby movements</li>
+        <li>Eat iron and calcium-rich foods</li>
+        <li>Consider prenatal checkups and scans</li>
+      </ul>`;
+  } else if (trimester === "3") {
+    info = `
+      <p><strong>3rd Trimester Tips (Weeks 28–40):</strong></p>
+      <ul>
+        <li>Prepare hospital bag</li>
+        <li>Do daily kick counts</li>
+        <li>Practice breathing techniques</li>
+        <li>Discuss birth plan with doctor</li>
+      </ul>`;
+  } else {
+    info = "<p>Please select a trimester.</p>";
+  }
+
+  infoDiv.innerHTML = info;
+}
+
+
+     function logHealthData() {
+  const weight = document.getElementById("weight").value;
+  const symptoms = document.getElementById("symptoms").value;
+  const log = `<p><span class="highlight">Weight:</span> ${weight} kg, <span class="highlight">Symptoms:</span> ${symptoms}</p>`;
+  healthLog.innerHTML += log;
+}
+
+function displayBabyLength() {
+  const length = document.getElementById("babyLength").value;
+  const output = document.getElementById("babyLengthOutput");
+
+  if (length) {
+    output.innerHTML = `<span class="highlight">Your baby's length is approximately ${length} cm.</span>`;
+  } else {
+    output.textContent = "Please enter a valid number.";
+  }
+}
+
+
+function recordKick() {
+  kickCount++;
+  kickCountDisplay.textContent = `Kicks recorded today: ${kickCount}`;
+}
+
+function resetKicks() {
+  kickCount = 0;
+  kickCountDisplay.textContent = `Kicks recorded today: 0`;
+}
+
+    const hero = document.getElementById("heroHeader");
+    const bgImages = [
+      'https://www.sunshinecoast.health.qld.gov.au/__data/assets/image/0030/324984/pregnancy.png',
+      'https://static01.nyt.com/images/2024/05/07/well/30Well-6weekspregnant/30Well-6weekspregnant-articleLarge.jpg?quality=75&auto=webp&disable=upscale',
+      'https://www.shutterstock.com/image-illustration/pregnant-woman-hugs-her-stomach-260nw-1890267163.jpg',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3EHa39jGN7SzTWJPgonyPuJrv6aE1yX5Kxw&s'
+    ];
+    let index = 0;
+
+   function changeBackground() {
+      hero.style.backgroundImage = `url('${bgImages[index]}')`;
+      index = (index + 1) % bgImages.length;
+    }
+    changeBackground();
+    setInterval(changeBackground, 5000);
+    const sectionHeadings = document.querySelectorAll('.section-heading');
+
+function animateHeadings() {
+  const triggerBottom = window.innerHeight * 0.9;
+
+  sectionHeadings.forEach(heading => {
+    const headingTop = heading.getBoundingClientRect().top;
+
+    if (headingTop < triggerBottom) {
+      heading.classList.add('animate');
+    }
+  });
+}
+
+window.addEventListener('scroll', animateHeadings);
+window.addEventListener('load', animateHeadings); // Animate if already in view
+
+  </script>
+</body>
+</html>

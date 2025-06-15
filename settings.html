@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings | </title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+   body {
+        font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: url('https://images.unsplash.com/photo-1706737141648-2a95d33d2a63?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmVtaW5pbmUlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww') no-repeat center center/cover;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #f48fb1, #ce93d8);
+      color: white;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    header .logo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.6rem;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: rgba(66, 8, 60, 0.927);
+      font-size: 2rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      background: #fffafd;
+    }
+
+    input[type="checkbox"] {
+      width: auto;
+      margin-right: 0.5rem;
+    }
+
+    button {
+      background: #ba2d65;
+      color: white;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #9c1f53;
+    }
+
+    .success-message {
+      padding: 1rem;
+      background-color: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #c8e6c9;
+      border-radius: 8px;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      font-weight: 600;
+      transition: color 0.3s;
+      font-size: 1rem;
+      
+    }
+    nav a:hover {
+      color: #ffe3ef;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Mrs.Doc Care</div>
+    <nav>
+      <a href="d2.html">Home</a>
+      <a href="community.html">Community</a>
+       <a href="settings.html">Settings</a>
+      <a href="about.html">About</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <form id="settingsForm">
+      <div class="section">
+        <h2>👩 Profile Info</h2>
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your full name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="example@email.com" required />
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" required />
+      </div>
+
+      <div class="section">
+        <h2>💖 Health Preferences</h2>
+        <label for="focus">Health Focus Area</label>
+        <select id="focus">
+          <option>Menstrual Health</option>
+          <option>PCOS</option>
+          <option>Fertility</option>
+          <option>Menopause</option>
+        </select>
+
+        <label for="cycle">Cycle Length (days)</label>
+        <input type="number" id="cycle" min="20" max="45" />
+
+        <label for="lastPeriod">Last Period Date</label>
+        <input type="date" id="lastPeriod" />
+      </div>
+
+      <div class="section">
+        <h2>🔔 Notifications</h2>
+        <label><input type="checkbox" id="reminder" /> Enable Period Reminders</label><br>
+        <label><input type="checkbox" id="mental" /> Weekly Mental Health Check-ins</label><br>
+        <label><input type="checkbox" id="tips" /> Monthly Wellness Tips</label>
+      </div>
+
+      <div class="section">
+        <h2>🔐 Security</h2>
+        <label for="password">Change Password</label>
+        <input type="password" id="password" placeholder="New password" />
+      </div>
+
+      <button type="submit">💾 Save Changes</button>
+      <div class="success-message" id="successMsg">Your settings have been saved successfully!</div>
+    </form>
+  </div>
+
+  <script>
+    flatpickr("#dob", {
+      dateFormat: "Y-m-d",
+      maxDate: "today",
+      altInput: true,
+      altFormat: "F j, Y",
+      yearSelectorType: "dropdown"
+    });
+
+    document.getElementById("settingsForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const msg = document.getElementById("successMsg");
+
+      if (!name || !email || !email.includes("@")) {
+        alert("Please enter valid name and email.");
+        return;
+      }
+
+      msg.style.display = "block";
+
+      setTimeout(() => {
+        msg.style.display = "none";
+      }, 4000);
+    });
+
+    // Set default DOB input to open in year/month view
+    document.getElementById("dob").addEventListener("focus", function(e) {
+      this.showPicker();
+    });
+    
+  </script>
+</body>
+</html>
